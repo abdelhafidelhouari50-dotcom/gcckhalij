@@ -1,0 +1,517 @@
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&display=swap');
+  #store-root { font-family: 'Tajawal', sans-serif; direction: rtl; background: #FAF7F2; color: #3A3025; }
+  #store-root * { box-sizing: border-box; margin: 0; padding: 0; }
+  :root { --g: #C9A84C; --gl: #E8C97A; --gd: #9A7530; --dk: #1A1612; --dk2: #2C2520; --mu: #8A7E72; --wh: #FFFFFF; --sa: #F0E8D8; }
+
+  .s-topbar { background: var(--g); text-align: center; padding: 8px; font-size: 12px; color: var(--dk); font-weight: 700; }
+  .s-header { background: var(--dk); border-bottom: 1px solid var(--gd); position: sticky; top: 0; z-index: 50; }
+  .s-nav { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; display: flex; align-items: center; justify-content: space-between; height: 64px; }
+  .s-logo { font-size: 22px; font-weight: 800; color: var(--g); letter-spacing: 2px; text-decoration: none; cursor: pointer; }
+  .s-logo span { color: var(--wh); font-weight: 300; }
+  .s-navlinks { display: flex; gap: 1.5rem; list-style: none; }
+  .s-navlinks a { color: rgba(255,255,255,0.75); text-decoration: none; font-size: 14px; font-weight: 500; cursor: pointer; transition: color 0.2s; }
+  .s-navlinks a:hover { color: var(--g); }
+  .s-icons { display: flex; gap: 1rem; align-items: center; }
+  .s-ibtn { background: none; border: none; cursor: pointer; color: rgba(255,255,255,0.75); font-size: 18px; transition: color 0.2s; position: relative; }
+  .s-ibtn:hover { color: var(--g); }
+  .s-badge { position: absolute; top: -5px; left: -5px; background: var(--g); color: var(--dk); width: 17px; height: 17px; border-radius: 50%; font-size: 9px; font-weight: 700; display: flex; align-items: center; justify-content: center; }
+
+  /* HERO */
+  .s-hero { position: relative; height: 520px; overflow: hidden; display: flex; align-items: center; background: linear-gradient(135deg, #1A1612 0%, #2C2520 50%, #3D3020 100%); }
+  .s-hero-img { position: absolute; left: 0; top: 0; width: 55%; height: 100%; object-fit: cover; opacity: 0.3; mask-image: linear-gradient(to right, black 40%, transparent 100%); -webkit-mask-image: linear-gradient(to right, black 40%, transparent 100%); }
+  .s-hero-content { position: relative; max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; width: 100%; }
+  .s-htag { display: inline-flex; align-items: center; gap: 6px; background: rgba(201,168,76,0.15); border: 1px solid rgba(201,168,76,0.4); color: var(--gl); padding: 5px 14px; border-radius: 30px; font-size: 12px; margin-bottom: 1.25rem; animation: fiu 0.8s ease; }
+  .s-htitle { font-size: clamp(36px, 5vw, 64px); font-weight: 800; color: var(--wh); line-height: 1.15; margin-bottom: 1rem; animation: fiu 0.8s ease 0.1s both; }
+  .s-htitle .sg { color: var(--g); }
+  .s-hsub { font-size: 15px; color: rgba(255,255,255,0.6); max-width: 420px; line-height: 1.8; margin-bottom: 2rem; font-weight: 300; animation: fiu 0.8s ease 0.2s both; }
+  .s-hbtns { display: flex; gap: 1rem; flex-wrap: wrap; animation: fiu 0.8s ease 0.3s both; }
+  .s-hstats { display: flex; gap: 2rem; margin-top: 2.5rem; animation: fiu 0.8s ease 0.4s both; }
+  .s-stat { text-align: center; }
+  .s-snum { font-size: 24px; font-weight: 800; color: var(--g); display: block; }
+  .s-slbl { font-size: 11px; color: rgba(255,255,255,0.45); }
+  .s-sdiv { width: 1px; background: rgba(201,168,76,0.2); align-self: center; height: 40px; }
+
+  /* BTNS */
+  .btn-g { background: var(--g); color: var(--dk); padding: 12px 28px; border-radius: 4px; font-family: 'Tajawal', sans-serif; font-size: 14px; font-weight: 700; border: none; cursor: pointer; transition: all 0.25s; text-decoration: none; }
+  .btn-g:hover { background: var(--gl); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(201,168,76,0.3); }
+  .btn-ol { background: transparent; color: var(--wh); padding: 11px 28px; border-radius: 4px; font-family: 'Tajawal', sans-serif; font-size: 14px; font-weight: 500; border: 1px solid rgba(255,255,255,0.3); cursor: pointer; transition: all 0.25s; }
+  .btn-ol:hover { border-color: var(--g); color: var(--g); }
+
+  /* TRUST */
+  .s-trust { background: var(--dk); padding: 2.5rem 0; border-top: 1px solid rgba(201,168,76,0.12); border-bottom: 1px solid rgba(201,168,76,0.12); }
+  .s-tgrid { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; }
+  .s-titem { display: flex; align-items: center; gap: 12px; }
+  .s-tico { font-size: 28px; flex-shrink: 0; }
+  .s-ttitle { font-size: 14px; font-weight: 700; color: var(--wh); margin-bottom: 2px; }
+  .s-tdesc { font-size: 11px; color: var(--mu); line-height: 1.5; }
+
+  /* SECTION */
+  .s-sec { max-width: 1200px; margin: 0 auto; padding: 4rem 1.5rem; }
+  .s-sechdr { text-align: center; margin-bottom: 2.5rem; }
+  .s-sectag { font-size: 11px; font-weight: 700; color: var(--g); letter-spacing: 3px; text-transform: uppercase; display: block; margin-bottom: 0.5rem; }
+  .s-sectitle { font-size: clamp(24px, 3.5vw, 36px); font-weight: 800; color: #1A1612; }
+  .s-sectitle .sg { color: var(--gd); }
+  .s-secline { width: 50px; height: 3px; background: var(--g); margin: 0.75rem auto 0; border-radius: 2px; }
+
+  /* CATEGORIES */
+  .s-catgrid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+  .s-catcard { position: relative; border-radius: 10px; overflow: hidden; height: 200px; cursor: pointer; }
+  .s-catcard:first-child { grid-column: span 1; grid-row: span 2; height: auto; }
+  .s-catimg { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s; }
+  .s-catcard:hover .s-catimg { transform: scale(1.06); }
+  .s-catov { position: absolute; inset: 0; background: linear-gradient(to top, rgba(26,22,18,0.85) 0%, rgba(26,22,18,0.05) 55%); display: flex; flex-direction: column; justify-content: flex-end; padding: 1.25rem; }
+  .s-cattitle { font-size: 18px; font-weight: 700; color: var(--wh); margin-bottom: 3px; }
+  .s-catcnt { font-size: 12px; color: var(--gl); }
+
+  /* PRODUCTS */
+  .s-prodbg { background: var(--dk); padding: 4rem 0; }
+  .s-pgrid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.25rem; }
+  .s-pcard { background: var(--dk2); border-radius: 10px; overflow: hidden; border: 1px solid rgba(201,168,76,0.1); transition: all 0.3s; cursor: pointer; }
+  .s-pcard:hover { border-color: rgba(201,168,76,0.4); transform: translateY(-4px); box-shadow: 0 16px 40px rgba(0,0,0,0.4); }
+  .s-pimgw { position: relative; height: 200px; overflow: hidden; background: #2A2420; }
+  .s-pimg { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s; }
+  .s-pcard:hover .s-pimg { transform: scale(1.05); }
+  .s-pbadge { position: absolute; top: 10px; right: 10px; background: var(--g); color: var(--dk); font-size: 10px; font-weight: 700; padding: 3px 9px; border-radius: 20px; }
+  .s-pbadge.new { background: #4CAF50; color: white; }
+  .s-pbadge.hot { background: #E53935; color: white; }
+  .s-pwish { position: absolute; top: 10px; left: 10px; background: rgba(26,22,18,0.75); border: none; color: rgba(255,255,255,0.5); width: 32px; height: 32px; border-radius: 50%; font-size: 15px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.2s; }
+  .s-pwish:hover { color: #E53935; }
+  .s-paddbtn { position: absolute; bottom: 0; left: 0; right: 0; background: var(--g); color: var(--dk); font-family: 'Tajawal', sans-serif; font-size: 13px; font-weight: 700; padding: 9px; border: none; cursor: pointer; transform: translateY(100%); transition: transform 0.3s; }
+  .s-pcard:hover .s-paddbtn { transform: translateY(0); }
+  .s-pinfo { padding: 0.9rem 1.1rem 1.1rem; }
+  .s-pbrand { font-size: 10px; font-weight: 700; color: var(--g); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 3px; }
+  .s-pname { font-size: 14px; font-weight: 600; color: var(--wh); margin-bottom: 5px; line-height: 1.4; }
+  .s-prat { display: flex; align-items: center; gap: 4px; margin-bottom: 8px; }
+  .stars { color: var(--g); font-size: 11px; }
+  .rcnt { font-size: 11px; color: var(--mu); }
+  .s-pprice { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+  .pmain { font-size: 18px; font-weight: 800; color: var(--g); }
+  .pold { font-size: 12px; color: var(--mu); text-decoration: line-through; }
+  .pdsc { font-size: 11px; font-weight: 700; color: #4CAF50; }
+
+  /* PROMO */
+  .s-promo { background: var(--g); padding: 4rem 0; }
+  .s-prcont { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; }
+  .s-prtext h2 { font-size: 40px; font-weight: 800; color: var(--dk); line-height: 1.2; margin-bottom: 0.75rem; }
+  .s-prtext p { font-size: 15px; color: rgba(26,22,18,0.7); margin-bottom: 1.5rem; line-height: 1.8; }
+  .s-cdown { display: flex; gap: 0.75rem; margin-bottom: 1.5rem; }
+  .s-cbox { text-align: center; background: rgba(26,22,18,0.12); border-radius: 8px; padding: 10px 14px; min-width: 60px; }
+  .s-cnum { font-size: 26px; font-weight: 800; color: var(--dk); display: block; line-height: 1; }
+  .s-clbl { font-size: 10px; color: rgba(26,22,18,0.6); margin-top: 3px; display: block; }
+  .s-primg { border-radius: 10px; overflow: hidden; box-shadow: 0 24px 48px rgba(26,22,18,0.2); height: 320px; }
+  .s-primg img { width: 100%; height: 100%; object-fit: cover; }
+  .btn-dk { background: var(--dk); color: var(--g); padding: 12px 28px; border-radius: 4px; font-family: 'Tajawal', sans-serif; font-size: 14px; font-weight: 700; border: none; cursor: pointer; }
+
+  /* REVIEWS */
+  .s-revbg { background: var(--sa); padding: 4rem 0; }
+  .s-rgrid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
+  .s-rcard { background: var(--wh); border-radius: 10px; padding: 1.5rem; border: 1px solid rgba(201,168,76,0.15); transition: all 0.3s; }
+  .s-rcard:hover { border-color: var(--g); box-shadow: 0 6px 24px rgba(201,168,76,0.1); transform: translateY(-2px); }
+  .s-rstars { color: var(--g); font-size: 15px; margin-bottom: 0.75rem; }
+  .s-rtext { font-size: 14px; color: #3A3025; line-height: 1.8; margin-bottom: 1rem; }
+  .s-reviewer { display: flex; align-items: center; gap: 8px; }
+  .s-ravatar { width: 38px; height: 38px; border-radius: 50%; background: var(--g); display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 700; color: var(--dk); flex-shrink: 0; }
+  .s-rname { font-weight: 700; font-size: 13px; color: var(--dk); }
+  .s-rloc { font-size: 11px; color: var(--mu); margin-top: 1px; }
+  .s-rver { margin-right: auto; font-size: 10px; color: #4CAF50; font-weight: 600; }
+
+  /* NEWSLETTER */
+  .s-nl { background: linear-gradient(135deg, var(--dk) 0%, #2C2520 50%, var(--dk) 100%); padding: 4rem 0; text-align: center; }
+  .s-nl h2 { font-size: 30px; font-weight: 800; color: var(--wh); margin-bottom: 0.5rem; }
+  .s-nl p { font-size: 14px; color: rgba(255,255,255,0.45); margin-bottom: 1.5rem; }
+  .s-nlform { display: flex; max-width: 440px; margin: 0 auto; }
+  .s-nlinp { flex: 1; padding: 12px 16px; background: rgba(255,255,255,0.06); border: 1px solid rgba(201,168,76,0.3); border-radius: 4px 0 0 4px; font-family: 'Tajawal', sans-serif; font-size: 13px; color: var(--wh); outline: none; }
+  .s-nlinp::placeholder { color: rgba(255,255,255,0.3); }
+  .s-nlbtn { background: var(--g); color: var(--dk); padding: 12px 20px; border: none; border-radius: 0 4px 4px 0; font-family: 'Tajawal', sans-serif; font-size: 13px; font-weight: 700; cursor: pointer; white-space: nowrap; }
+
+  /* FOOTER */
+  .s-footer { background: #0F0D0A; padding: 3rem 0 1.5rem; border-top: 1px solid rgba(201,168,76,0.1); }
+  .s-fgrid { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 2.5rem; margin-bottom: 2rem; }
+  .s-fdesc { font-size: 13px; color: rgba(255,255,255,0.35); line-height: 1.8; margin: 0.75rem 0 1.25rem; }
+  .s-socials { display: flex; gap: 8px; }
+  .s-sbtn { width: 34px; height: 34px; border-radius: 7px; background: rgba(201,168,76,0.1); border: 1px solid rgba(201,168,76,0.2); display: flex; align-items: center; justify-content: center; font-size: 14px; color: var(--g); cursor: pointer; transition: all 0.2s; }
+  .s-sbtn:hover { background: var(--g); color: var(--dk); }
+  .s-fcol h4 { font-size: 12px; font-weight: 700; color: var(--g); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 1rem; }
+  .s-flinks { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
+  .s-flinks a { font-size: 13px; color: rgba(255,255,255,0.4); text-decoration: none; cursor: pointer; transition: color 0.2s; }
+  .s-flinks a:hover { color: var(--gl); }
+  .s-fbot { max-width: 1200px; margin: 0 auto; padding: 1.25rem 1.5rem 0; border-top: 1px solid rgba(255,255,255,0.06); display: flex; justify-content: space-between; align-items: center; }
+  .s-fcopy { font-size: 12px; color: rgba(255,255,255,0.2); }
+  .s-pays { display: flex; gap: 6px; }
+  .s-pay { background: rgba(255,255,255,0.07); border-radius: 4px; padding: 3px 9px; font-size: 10px; font-weight: 700; color: rgba(255,255,255,0.45); }
+
+  /* CART */
+  .s-cover { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.65); z-index: 200; }
+  .s-cover.open { display: block; }
+  .s-cart { position: fixed; left: 0; top: 0; bottom: 0; width: 340px; background: var(--dk); border-right: 1px solid rgba(201,168,76,0.2); z-index: 201; transform: translateX(-100%); transition: transform 0.3s ease; display: flex; flex-direction: column; }
+  .s-cart.open { transform: translateX(0); }
+  .s-chardr { padding: 1.25rem; border-bottom: 1px solid rgba(201,168,76,0.12); display: flex; justify-content: space-between; align-items: center; }
+  .s-chardr h3 { color: var(--wh); font-size: 16px; font-weight: 700; }
+  .s-cbtn { background: none; border: none; color: var(--mu); font-size: 20px; cursor: pointer; }
+  .s-cbdy { flex: 1; overflow-y: auto; padding: 1.25rem; }
+  .s-cempty { text-align: center; padding: 2.5rem 1rem; color: var(--mu); }
+  .s-cico { font-size: 40px; margin-bottom: 0.75rem; opacity: 0.35; }
+  .s-citem { display: flex; gap: 10px; margin-bottom: 1rem; padding-bottom: 1rem; border-bottom: 1px solid rgba(255,255,255,0.05); }
+  .s-cimg { width: 64px; height: 64px; border-radius: 7px; object-fit: cover; flex-shrink: 0; }
+  .s-ciname { font-size: 12px; font-weight: 600; color: var(--wh); margin-bottom: 3px; }
+  .s-ciprice { font-size: 14px; font-weight: 700; color: var(--g); }
+  .s-cirm { background: none; border: none; color: var(--mu); cursor: pointer; font-size: 12px; margin-top: 3px; display: block; font-family: 'Tajawal', sans-serif; }
+  .s-cfoot { padding: 1.25rem; border-top: 1px solid rgba(201,168,76,0.12); }
+  .s-ctot { display: flex; justify-content: space-between; margin-bottom: 0.75rem; }
+  .s-ctlbl { font-size: 13px; color: var(--mu); }
+  .s-ctprice { font-size: 18px; font-weight: 800; color: var(--g); }
+  .s-checkout { width: 100%; background: var(--g); color: var(--dk); padding: 12px; border: none; border-radius: 4px; font-family: 'Tajawal', sans-serif; font-size: 14px; font-weight: 700; cursor: pointer; transition: background 0.2s; }
+  .s-checkout:hover { background: var(--gl); }
+
+  @keyframes fiu { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+
+  @media (max-width: 800px) {
+    .s-catgrid { grid-template-columns: repeat(2, 1fr); }
+    .s-catcard:first-child { grid-column: auto; grid-row: auto; }
+    .s-pgrid { grid-template-columns: repeat(2, 1fr); }
+    .s-rgrid { grid-template-columns: 1fr; }
+    .s-tgrid { grid-template-columns: repeat(2, 1fr); }
+    .s-fgrid { grid-template-columns: 1fr 1fr; }
+    .s-prcont { grid-template-columns: 1fr; }
+    .s-navlinks { display: none; }
+    .s-hstats { flex-wrap: wrap; gap: 1rem; }
+    .s-sdiv { display: none; }
+  }
+</style>
+
+<div id="store-root">
+
+<div class="s-topbar">🚚 شحن مجاني لجميع دول الخليج على الطلبات فوق 150 ر.س | كود: LUXURY20</div>
+
+<div class="s-header">
+  <div class="s-nav">
+    <a class="s-logo">لوكسي <span>|</span> LUXE</a>
+    <ul class="s-navlinks">
+      <li><a>الرئيسية</a></li>
+      <li><a>المتجر</a></li>
+      <li><a>التخفيضات</a></li>
+      <li><a>المجموعات</a></li>
+      <li><a>تواصل معنا</a></li>
+    </ul>
+    <div class="s-icons">
+      <button class="s-ibtn">🔍</button>
+      <button class="s-ibtn">🤍</button>
+      <button class="s-ibtn" id="cartBtn" style="position:relative;">🛒<span class="s-badge" id="cartCount">0</span></button>
+    </div>
+  </div>
+</div>
+
+<div class="s-hero">
+  <img class="s-hero-img" src="https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?w=800&q=70" alt="">
+  <div class="s-hero-content">
+    <div style="max-width:560px;">
+      <div class="s-htag">✨ تشكيلة صيف 2025</div>
+      <h1 class="s-htitle">الأناقة<br><span class="sg">تبدأ من هنا</span></h1>
+      <p class="s-hsub">اكتشف أرقى التشكيلات لتعكس ذوقك الرفيع — جودة استثنائية وتوصيل سريع لجميع دول الخليج.</p>
+      <div class="s-hbtns">
+        <button class="btn-g" onclick="document.getElementById('s-products').scrollIntoView({behavior:'smooth'})">تسوق الآن</button>
+        <button class="btn-ol" onclick="document.getElementById('s-cats').scrollIntoView({behavior:'smooth'})">عرض المجموعات</button>
+      </div>
+      <div class="s-hstats">
+        <div class="s-stat"><span class="s-snum">+50K</span><span class="s-slbl">عميل سعيد</span></div>
+        <div class="s-sdiv"></div>
+        <div class="s-stat"><span class="s-snum">+2000</span><span class="s-slbl">منتج فاخر</span></div>
+        <div class="s-sdiv"></div>
+        <div class="s-stat"><span class="s-snum">6</span><span class="s-slbl">دول خليجية</span></div>
+        <div class="s-sdiv"></div>
+        <div class="s-stat"><span class="s-snum">4.9★</span><span class="s-slbl">تقييم العملاء</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="s-trust">
+  <div class="s-tgrid">
+    <div class="s-titem"><div class="s-tico">🚚</div><div><div class="s-ttitle">شحن سريع للخليج</div><div class="s-tdesc">توصيل 2-4 أيام لجميع دول الخليج</div></div></div>
+    <div class="s-titem"><div class="s-tico">🔒</div><div><div class="s-ttitle">دفع آمن 100%</div><div class="s-tdesc">مدى، فيزا، Apple Pay، كاش</div></div></div>
+    <div class="s-titem"><div class="s-tico">↩️</div><div><div class="s-ttitle">إرجاع مجاني</div><div class="s-tdesc">استرداد كامل خلال 30 يوماً</div></div></div>
+    <div class="s-titem"><div class="s-tico">🎁</div><div><div class="s-ttitle">تغليف فاخر</div><div class="s-tdesc">كل طلب بتغليف مميز يصلح هدية</div></div></div>
+  </div>
+</div>
+
+<div id="s-cats">
+  <div class="s-sec">
+    <div class="s-sechdr">
+      <span class="s-sectag">تسوق حسب الفئة</span>
+      <h2 class="s-sectitle">اكتشف <span class="sg">تشكيلاتنا</span></h2>
+      <div class="s-secline"></div>
+    </div>
+    <div class="s-catgrid">
+      <div class="s-catcard" style="height:420px;">
+        <img class="s-catimg" src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=500&q=75" alt="">
+        <div class="s-catov"><div class="s-cattitle">عباءات وأزياء</div><div class="s-catcnt">+380 منتج</div></div>
+      </div>
+      <div class="s-catcard">
+        <img class="s-catimg" src="https://images.unsplash.com/photo-1523293182086-7651a899d37f?w=400&q=75" alt="">
+        <div class="s-catov"><div class="s-cattitle">عطور فاخرة</div><div class="s-catcnt">+120 منتج</div></div>
+      </div>
+      <div class="s-catcard">
+        <img class="s-catimg" src="https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=400&q=75" alt="">
+        <div class="s-catov"><div class="s-cattitle">حقائب جلدية</div><div class="s-catcnt">+95 منتج</div></div>
+      </div>
+      <div class="s-catcard">
+        <img class="s-catimg" src="https://images.unsplash.com/photo-1568702846914-96b305d2aaeb?w=400&q=75" alt="">
+        <div class="s-catov"><div class="s-cattitle">ملابس رجالية</div><div class="s-catcnt">+210 منتج</div></div>
+      </div>
+      <div class="s-catcard">
+        <img class="s-catimg" src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=400&q=75" alt="">
+        <div class="s-catov"><div class="s-cattitle">إكسسوارات ذهبية</div><div class="s-catcnt">+175 منتج</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="s-prodbg" id="s-products">
+  <div class="s-sec" style="padding-top:0;padding-bottom:0;">
+    <div class="s-sechdr">
+      <span class="s-sectag">منتجات مختارة</span>
+      <h2 class="s-sectitle" style="color:#FFFFFF;">الأكثر <span style="color:var(--g);">مبيعاً</span></h2>
+      <div class="s-secline"></div>
+    </div>
+    <div class="s-pgrid">
+
+      <div class="s-pcard" data-price="349" data-name="عطر الود والمسك">
+        <div class="s-pimgw">
+          <img class="s-pimg" src="https://images.unsplash.com/photo-1563170351-be82bc888aa4?w=400&q=75" alt="">
+          <span class="s-pbadge">الأكثر مبيعاً</span>
+          <button class="s-pwish">🤍</button>
+          <button class="s-paddbtn" onclick="addToCart(this)">أضف للسلة 🛒</button>
+        </div>
+        <div class="s-pinfo">
+          <div class="s-pbrand">Arabian Oud</div>
+          <div class="s-pname">عطر الود والمسك — 100ml</div>
+          <div class="s-prat"><span class="stars">★★★★★</span><span class="rcnt">(284)</span></div>
+          <div class="s-pprice"><span class="pmain">349 ر.س</span><span class="pold">499 ر.س</span><span class="pdsc">خصم 30%</span></div>
+        </div>
+      </div>
+
+      <div class="s-pcard" data-price="1250" data-name="حقيبة جلد طبيعي">
+        <div class="s-pimgw">
+          <img class="s-pimg" src="https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=400&q=75" alt="">
+          <span class="s-pbadge new">جديد</span>
+          <button class="s-pwish">🤍</button>
+          <button class="s-paddbtn" onclick="addToCart(this)">أضف للسلة 🛒</button>
+        </div>
+        <div class="s-pinfo">
+          <div class="s-pbrand">Leather Luxe</div>
+          <div class="s-pname">حقيبة جلد طبيعي — 2025</div>
+          <div class="s-prat"><span class="stars">★★★★★</span><span class="rcnt">(142)</span></div>
+          <div class="s-pprice"><span class="pmain">1,250 ر.س</span></div>
+        </div>
+      </div>
+
+      <div class="s-pcard" data-price="185" data-name="كريم ترطيب بالأرغان">
+        <div class="s-pimgw">
+          <img class="s-pimg" src="https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=400&q=75" alt="">
+          <span class="s-pbadge hot">🔥 رائج</span>
+          <button class="s-pwish">🤍</button>
+          <button class="s-paddbtn" onclick="addToCart(this)">أضف للسلة 🛒</button>
+        </div>
+        <div class="s-pinfo">
+          <div class="s-pbrand">Glow Studio</div>
+          <div class="s-pname">كريم ترطيب فاخر بالأرغان</div>
+          <div class="s-prat"><span class="stars">★★★★☆</span><span class="rcnt">(391)</span></div>
+          <div class="s-pprice"><span class="pmain">185 ر.س</span><span class="pold">240 ر.س</span><span class="pdsc">وفر 55 ر.س</span></div>
+        </div>
+      </div>
+
+      <div class="s-pcard" data-price="890" data-name="ساعة كلاسيك ذهبية">
+        <div class="s-pimgw">
+          <img class="s-pimg" src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=400&q=75" alt="">
+          <span class="s-pbadge">محدود</span>
+          <button class="s-pwish">🤍</button>
+          <button class="s-paddbtn" onclick="addToCart(this)">أضف للسلة 🛒</button>
+        </div>
+        <div class="s-pinfo">
+          <div class="s-pbrand">Time Luxe</div>
+          <div class="s-pname">ساعة كلاسيك رجالية — ذهبي</div>
+          <div class="s-prat"><span class="stars">★★★★★</span><span class="rcnt">(76)</span></div>
+          <div class="s-pprice"><span class="pmain">890 ر.س</span><span class="pold">1,200 ر.س</span><span class="pdsc">خصم 26%</span></div>
+        </div>
+      </div>
+
+      <div class="s-pcard" data-price="420" data-name="عباءة سوداء كلاسيك">
+        <div class="s-pimgw">
+          <img class="s-pimg" src="https://images.unsplash.com/photo-1509631179647-0177331693ae?w=400&q=75" alt="">
+          <span class="s-pbadge new">جديد</span>
+          <button class="s-pwish">🤍</button>
+          <button class="s-paddbtn" onclick="addToCart(this)">أضف للسلة 🛒</button>
+        </div>
+        <div class="s-pinfo">
+          <div class="s-pbrand">Abaya House</div>
+          <div class="s-pname">عباءة سوداء كلاسيك — حرير</div>
+          <div class="s-prat"><span class="stars">★★★★★</span><span class="rcnt">(203)</span></div>
+          <div class="s-pprice"><span class="pmain">420 ر.س</span></div>
+        </div>
+      </div>
+
+      <div class="s-pcard" data-price="275" data-name="أحذية جلدية رجالية">
+        <div class="s-pimgw">
+          <img class="s-pimg" src="https://images.unsplash.com/photo-1614252369475-531eba835eb1?w=400&q=75" alt="">
+          <span class="s-pbadge hot">🔥 رائج</span>
+          <button class="s-pwish">🤍</button>
+          <button class="s-paddbtn" onclick="addToCart(this)">أضف للسلة 🛒</button>
+        </div>
+        <div class="s-pinfo">
+          <div class="s-pbrand">Luxe Steps</div>
+          <div class="s-pname">أحذية جلدية رجالية — بني</div>
+          <div class="s-prat"><span class="stars">★★★★☆</span><span class="rcnt">(118)</span></div>
+          <div class="s-pprice"><span class="pmain">275 ر.س</span><span class="pold">350 ر.س</span><span class="pdsc">خصم 21%</span></div>
+        </div>
+      </div>
+
+      <div class="s-pcard" data-price="660" data-name="طقم إكسسوارات ذهبية">
+        <div class="s-pimgw">
+          <img class="s-pimg" src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=400&q=75" alt="">
+          <span class="s-pbadge">الأكثر مبيعاً</span>
+          <button class="s-pwish">🤍</button>
+          <button class="s-paddbtn" onclick="addToCart(this)">أضف للسلة 🛒</button>
+        </div>
+        <div class="s-pinfo">
+          <div class="s-pbrand">Gold Edition</div>
+          <div class="s-pname">طقم إكسسوارات ذهبية — 4 قطع</div>
+          <div class="s-prat"><span class="stars">★★★★★</span><span class="rcnt">(157)</span></div>
+          <div class="s-pprice"><span class="pmain">660 ر.س</span><span class="pold">900 ر.س</span><span class="pdsc">وفر 240 ر.س</span></div>
+        </div>
+      </div>
+
+      <div class="s-pcard" data-price="155" data-name="شال كشمير فاخر">
+        <div class="s-pimgw">
+          <img class="s-pimg" src="https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=400&q=75" alt="">
+          <span class="s-pbadge new">جديد</span>
+          <button class="s-pwish">🤍</button>
+          <button class="s-paddbtn" onclick="addToCart(this)">أضف للسلة 🛒</button>
+        </div>
+        <div class="s-pinfo">
+          <div class="s-pbrand">Cashmere Co.</div>
+          <div class="s-pname">شال كشمير فاخر — متعدد الألوان</div>
+          <div class="s-prat"><span class="stars">★★★★☆</span><span class="rcnt">(89)</span></div>
+          <div class="s-pprice"><span class="pmain">155 ر.س</span></div>
+        </div>
+      </div>
+
+    </div>
+    <div style="text-align:center;margin-top:2.5rem;">
+      <button class="btn-g" style="font-size:15px;padding:14px 44px;">عرض جميع المنتجات ←</button>
+    </div>
+  </div>
+</div>
+
+<div class="s-promo">
+  <div class="s-prcont">
+    <div class="s-prtext">
+      <h2>عرض نهاية<br>الموسم 🌙</h2>
+      <p>خصومات حصرية تصل إلى 50% على أفخر التشكيلات — لفترة محدودة فقط.</p>
+      <div class="s-cdown">
+        <div class="s-cbox"><span class="s-cnum" id="cDays">02</span><span class="s-clbl">يوم</span></div>
+        <div class="s-cbox"><span class="s-cnum" id="cHrs">14</span><span class="s-clbl">ساعة</span></div>
+        <div class="s-cbox"><span class="s-cnum" id="cMin">30</span><span class="s-clbl">دقيقة</span></div>
+        <div class="s-cbox"><span class="s-cnum" id="cSec">00</span><span class="s-clbl">ثانية</span></div>
+      </div>
+      <button class="btn-dk" style="font-size:15px;padding:14px 32px;">اغتنم العرض الآن</button>
+    </div>
+    <div class="s-primg">
+      <img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?w=600&q=75" alt="">
+    </div>
+  </div>
+</div>
+
+<div class="s-revbg">
+  <div class="s-sec">
+    <div class="s-sechdr">
+      <span class="s-sectag">آراء عملائنا</span>
+      <h2 class="s-sectitle">ماذا يقول <span class="sg">عملاؤنا</span>؟</h2>
+      <div class="s-secline"></div>
+    </div>
+    <div class="s-rgrid">
+      <div class="s-rcard"><div class="s-rstars">★★★★★</div><p class="s-rtext">"تجربة تسوق استثنائية! المنتجات وصلت في يومين فقط، التغليف فاخر جداً، والجودة تفوق التوقعات. صارت متجري الأول دايماً."</p><div class="s-reviewer"><div class="s-ravatar">نـ</div><div><div class="s-rname">نورة العتيبي</div><div class="s-rloc">🇸🇦 الرياض</div></div><span class="s-rver">✓ موثق</span></div></div>
+      <div class="s-rcard"><div class="s-rstars">★★★★★</div><p class="s-rtext">"اشتريت حقيبة وعطر ووصلوا بأسرع وقت. الخدمة ممتازة والتواصل مع الفريق كان سلس جداً. أنصح كل خليجية بهذا المتجر!"</p><div class="s-reviewer"><div class="s-ravatar">مـ</div><div><div class="s-rname">مريم الزهراني</div><div class="s-rloc">🇦🇪 دبي</div></div><span class="s-rver">✓ موثق</span></div></div>
+      <div class="s-rcard"><div class="s-rstars">★★★★★</div><p class="s-rtext">"الساعة الذهبية وصلت بتغليف هدية رائع جداً. الجودة عالية ومطابقة 100% للصور. سأعود للشراء قريباً."</p><div class="s-reviewer"><div class="s-ravatar">خـ</div><div><div class="s-rname">خالد المنصوري</div><div class="s-rloc">🇰🇼 الكويت</div></div><span class="s-rver">✓ موثق</span></div></div>
+    </div>
+  </div>
+</div>
+
+<div class="s-nl">
+  <div class="s-sec" style="text-align:center;">
+    <h2>اشترك في نشرتنا البريدية</h2>
+    <p>احصل على أحدث العروض والتشكيلات مباشرة في بريدك الإلكتروني</p>
+    <div class="s-nlform">
+      <input class="s-nlinp" type="email" placeholder="أدخل بريدك الإلكتروني...">
+      <button class="s-nlbtn">اشترك الآن</button>
+    </div>
+  </div>
+</div>
+
+<div class="s-footer">
+  <div class="s-fgrid">
+    <div>
+      <a class="s-logo" style="display:block;margin-bottom:0.75rem;">لوكسي <span>|</span> LUXE</a>
+      <p class="s-fdesc">وجهتك الأولى للموضة الفاخرة في الخليج العربي. أرقى التشكيلات، جودة مضمونة، وتوصيل سريع.</p>
+      <div class="s-socials">
+        <div class="s-sbtn">📸</div>
+        <div class="s-sbtn">🐦</div>
+        <div class="s-sbtn">📘</div>
+        <div class="s-sbtn">▶️</div>
+      </div>
+    </div>
+    <div class="s-fcol"><h4>المتجر</h4><ul class="s-flinks"><li><a>جميع المنتجات</a></li><li><a>العروض والخصومات</a></li><li><a>الأكثر مبيعاً</a></li><li><a>المجموعات</a></li></ul></div>
+    <div class="s-fcol"><h4>خدمات</h4><ul class="s-flinks"><li><a>تتبع طلبك</a></li><li><a>سياسة الإرجاع</a></li><li><a>الشحن والتوصيل</a></li><li><a>خدمة العملاء</a></li></ul></div>
+    <div class="s-fcol"><h4>تواصل معنا</h4><ul class="s-flinks"><li><a>📞 920-000-0000</a></li><li><a>✉️ hello@luxe.sa</a></li><li><a>💬 واتساب مباشر</a></li><li><a>الأحد – الخميس</a></li></ul></div>
+  </div>
+  <div class="s-fbot">
+    <span class="s-fcopy">© 2025 لوكسي. جميع الحقوق محفوظة.</span>
+    <div class="s-pays"><span class="s-pay">VISA</span><span class="s-pay">mada</span><span class="s-pay">Apple Pay</span><span class="s-pay">STC Pay</span></div>
+  </div>
+</div>
+
+<div class="s-cover" id="cOverlay" onclick="closeCart()"></div>
+<div class="s-cart" id="sCart">
+  <div class="s-chardr"><h3>سلة التسوق 🛒</h3><button class="s-cbtn" onclick="closeCart()">✕</button></div>
+  <div class="s-cbdy" id="cartBody"><div class="s-cempty"><div class="s-cico">🛒</div><p>سلتك فارغة<br>ابدأ التسوق الآن!</p></div></div>
+  <div class="s-cfoot" id="cartFoot" style="display:none;">
+    <div class="s-ctot"><span class="s-ctlbl">الإجمالي:</span><span class="s-ctprice" id="cartTot">0 ر.س</span></div>
+    <button class="s-checkout">إتمام الطلب ←</button>
+  </div>
+</div>
+
+</div>
+
+<script>
+let cart = [];
+document.getElementById('cartBtn').onclick = ()=>{ document.getElementById('sCart').classList.add('open'); document.getElementById('cOverlay').classList.add('open'); };
+function closeCart(){ document.getElementById('sCart').classList.remove('open'); document.getElementById('cOverlay').classList.remove('open'); }
+function addToCart(btn){
+  const c=btn.closest('.s-pcard');
+  cart.push({name:c.dataset.name, price:parseInt(c.dataset.price), img:c.querySelector('.s-pimg').src});
+  updateCart();
+  document.getElementById('sCart').classList.add('open'); document.getElementById('cOverlay').classList.add('open');
+  btn.textContent='✓ تمت الإضافة';
+  setTimeout(()=>{btn.textContent='أضف للسلة 🛒';},1800);
+}
+function updateCart(){
+  document.getElementById('cartCount').textContent=cart.length;
+  const tot=cart.reduce((s,i)=>s+i.price,0);
+  document.getElementById('cartTot').textContent=tot.toLocaleString()+' ر.س';
+  const body=document.getElementById('cartBody'), foot=document.getElementById('cartFoot');
+  if(!cart.length){body.innerHTML='<div class="s-cempty"><div class="s-cico">🛒</div><p>سلتك فارغة<br>ابدأ التسوق الآن!</p></div>';foot.style.display='none';}
+  else{foot.style.display='block';body.innerHTML=cart.map((it,i)=>`<div class="s-citem"><img class="s-cimg" src="${it.img}" alt=""><div><div class="s-ciname">${it.name}</div><div class="s-ciprice">${it.price.toLocaleString()} ر.س</div><button class="s-cirm" onclick="removeItem(${i})">✕ إزالة</button></div></div>`).join('');}
+}
+function removeItem(i){cart.splice(i,1);updateCart();}
+document.querySelectorAll('.s-pwish').forEach(b=>b.addEventListener('click',function(e){e.stopPropagation();this.textContent=this.textContent==='🤍'?'❤️':'🤍';}));
+const end=Date.now()+(2*86400+14*3600+30*60)*1000;
+function tick(){
+  const d=end-Date.now(); if(d<=0)return;
+  document.getElementById('cDays').textContent=String(Math.floor(d/86400000)).padStart(2,'0');
+  document.getElementById('cHrs').textContent=String(Math.floor(d%86400000/3600000)).padStart(2,'0');
+  document.getElementById('cMin').textContent=String(Math.floor(d%3600000/60000)).padStart(2,'0');
+  document.getElementById('cSec').textContent=String(Math.floor(d%60000/1000)).padStart(2,'0');
+}
+setInterval(tick,1000); tick();
+</script>
